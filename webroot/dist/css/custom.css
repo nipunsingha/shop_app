@@ -1,0 +1,101 @@
+.cartpage {
+  border: 1px solid #ddd;
+  overflow: hidden;
+  padding: 10px;
+}
+.cartpage h2 {
+  border-bottom: 1px solid #ddd;
+  font-size: 30px;
+  margin-bottom: 20px;
+  width: 141px;
+}
+.tblone {
+  border: 1px solid #fff;
+  margin-bottom: 12px;
+  width: 100%;
+}
+.tblone th {
+  background: #666 none repeat scroll 0 0;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px 8px;
+  text-align: center;
+}
+.tblone td{padding:10px;text-align:center;}
+
+table.tblone tr:nth-child(2n+1){background:#fff;height:30px;}
+table.tblone tr:nth-child(2n){background:#fdf0f1;height:30px;}
+table.tblone input[type="number"] {
+  border: 1px solid #ddd;
+  padding: 2px;
+  width: 60px;
+}
+table.tblone input[type="submit"] {
+  background: #333 none repeat scroll 0 0;
+  border: 1px solid #000;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 1px 5px;
+}
+table.tblone a {
+  color: #fe5800;
+  font-weight: bold;
+  text-decoration: none;
+}
+table.tblone a:hover{color: #000;}
+table.tblone img {
+  height: 20px;
+  width: 30px;
+}
+.shopping {
+  margin-top: 30px;
+}
+.shopleft, .shopleft {
+  float: left;
+  text-align: center;
+  width: 610px;
+}
+
+.ctbale table tbody td input{
+  text-align: right;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px
+}
+
+#editproductItems input{
+  border: none;
+  width: 100%;
+}
+
+#productItems input{
+  border: none;
+  width: 100%;
+}
+.borderless td, .borderless th {
+    border: none;
+}
+
+#addSoldItem input{
+  border: none;
+  width: 100%;
+  background: none; 
+  text-align: center;
+}
+.borderless td, .borderless th {
+    border: none;
+}
+
+input.discountinput {
+  border: 1px solid #ddd !important;
+  background: #fff !important; 
+  text-align: right !important;
+}
+#searchResult{
+  border: 1px solid #eee;
+  padding: 5px;
+  background: #eee;
+  cursor: pointer;
+}
