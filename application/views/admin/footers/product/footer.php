@@ -209,7 +209,7 @@ $("form#add_product").validate({
 
         p_img:{
             required: false,
-            extension: "jpg|jpeg|png"   
+            extension: "jpg|jpeg|png",  
         }
                              
     },
