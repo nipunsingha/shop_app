@@ -150,6 +150,7 @@ class User extends CI_Controller {
     public function ajax_update()
     {
        $password = $this->input->post('password');
+       $id = $this->input->post('updateId');
        if (empty($password)) {
         $data = array(
                 'name' => $this->input->post('name'),
@@ -165,7 +166,7 @@ class User extends CI_Controller {
             );
        }
 
-       $result = $this->userModel->update(array('u_id' => $this->input->post('updateId')), $data);
+       $result = $this->userModel->update($id, $data);
 
            if ($result) {
          echo"succes";

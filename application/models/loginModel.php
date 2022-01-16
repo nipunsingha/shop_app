@@ -10,4 +10,13 @@ class loginModel extends CI_Model {
         parent::__construct();
        //$this->load->database();
     }
+
+    public function login_user($username, $hash){
+		  $this->db->from('tbl_user');
+		  $this->db->where('username',$username);
+		  $this->db->where('password',$hash);
+		  $query = $this->db->get();
+
+		  return $query->result();
+    }
 }

@@ -96,10 +96,12 @@ class userModel extends CI_Model {
         return $query->row();
     }
 
-    public function update($where, $data)
+    public function update($id, $data)
     {
-        $this->db->update($this->table, $data, $where);
-        return $this->db->affected_rows();
+        // $this->db->update($this->table, $data, $where);
+        // return $this->db->affected_rows();
+$this->db->where('u_id', $id);
+$this->db->update($this->table, $data);
     }
 
     public function delete_by_id($id)

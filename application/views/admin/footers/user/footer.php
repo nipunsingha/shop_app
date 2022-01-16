@@ -225,12 +225,12 @@ $("#userform").validate({
                  success:function(data)  
                  {
 
-              if (data.trim()=='succes') {
+     
                       $('#userForm')[0].reset();  
                       $('#myModal').modal('hide');                  
                        toastr.success('User Update successfully', 'Success Alert',{timeOut: 3000,progressBar: true}); 
                        reload_table();
-                   }
+              
                       
                  }  
             });
