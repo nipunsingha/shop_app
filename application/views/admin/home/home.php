@@ -22,15 +22,16 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <div class="card">
-              <div class="card-body">
-                <h2 class="">welcome</h2>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Welcome</h3>
 
-                <p class="">
-                  shop inventory management app
-                </p>
-
+                <p><?php echo $this->session->userdata('name');?></p>
               </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <h3 class="small-box-footer">Shop inventory management system</h3>
             </div>
           </div>
           <!-- /.col-md-6 -->

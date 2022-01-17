@@ -23,7 +23,11 @@ class Welcome extends CI_Controller {
 
     public function __construct()
     {
-      parent::__construct();	
+      parent::__construct();
+      if (! $this->session->userdata('username'))
+      {
+          redirect('Login/index'); // the user is not logged in, redirect them!
+      }	
       $this->load->model('productModel');
       $this->load->helper('form');
     }

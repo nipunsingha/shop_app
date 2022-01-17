@@ -15,7 +15,7 @@
           <img src="<?php echo base_url()?>webroot/dist/img/user.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?php echo base_url('/')?>" class="d-block">Admin </a>
+          <a href="<?php echo base_url('/')?>" class="d-block"><?php echo $this->session->userdata('name');?></a>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-apple-alt"></i>
               <p>
                Product
                <i class="right fas fa-angle-left"></i>
@@ -133,7 +133,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-shopping-cart"></i>
+              <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                Report
                <i class="right fas fa-angle-left"></i>
@@ -157,19 +157,21 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-shopping-cart"></i>
+              <i class="nav-icon fas fa-user-plus"></i>
               <p>
                User
                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if($this->session->userdata('level')=='admin'){?>
               <li class="nav-item">
                 <a href="<?php echo base_url()?>User/add_user" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add user</p>
                 </a>
               </li>
+              <?php }?>
               <li class="nav-item">
                 <a href="<?php echo base_url()?>User/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

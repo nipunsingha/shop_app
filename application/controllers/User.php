@@ -5,6 +5,10 @@ class User extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
+        if (! $this->session->userdata('username'))
+        {
+            redirect('Login/index'); // the user is not logged in, redirect them!
+        }
         $this->load->library('breadcrumb');
         $this->load->helper(array('form','url'));
         $this->load->library(array('session', 'form_validation'));
@@ -114,6 +118,8 @@ class User extends CI_Controller {
         $list = $this->userModel->get_datatables();
         $data = array();
         $no = $_POST['start'];
+
+
         foreach ($list as $cat) {
             $no++;
             $row = array();
@@ -122,10 +128,16 @@ class User extends CI_Controller {
             $row[] = $cat->level;
             //$row[] = $cat->date;
  
+
+         if ($this->session->userdata('level')=='admin') {
             //add html for action
             $row[] = '<button class="btn bg-gradient-info btn-flat"  id="editBtnId" data-editBtnId="'.$cat->u_id.'"><i class="fas fa-pen"></i></button>
 
                 <button class="btn bg-gradient-danger btn-flat" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$cat->u_id."'".')"><i class="far fa-trash-alt"></i></button>';
+        }else{
+          $row[] ='x';
+        }
+
  
             $data[] = $row;
         }

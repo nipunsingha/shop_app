@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="<?php echo base_url();?>/Login/logout" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
 
@@ -79,14 +79,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- userinfo -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>
+          <i class="fa fas fa-user-alt"></i>
+          <?php echo $this->session->userdata('username');?>
           <i class="right fas fa-angle-down"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-          <span class="dropdown-header">User Admin</span>
+          <?php 
+            if ($this->session->userdata('level')=='admin') {
+          ?>
+          <span class="dropdown-header">Administration</span>
+          <?php }else{?>
+          <span class="dropdown-header">Editor</span>
+          <?php }?>  
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> Logout
+          <a href="<?php echo base_url();?>/Login/logout" class="dropdown-item">
+            <i class="fas fa-sign-out-alt mr-2"></i> Logout
           </a>
         </div>
       </li>

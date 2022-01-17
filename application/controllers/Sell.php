@@ -8,6 +8,10 @@ class Sell extends CI_Controller
    public function __construct() 
    {
       parent::__construct();
+      if (! $this->session->userdata('username'))
+      {
+          redirect('Login/index'); // the user is not logged in, redirect them!
+      }
       $this->load->library('breadcrumb');
       $this->load->model('productModel');
       $this->load->model('sellModel');
@@ -773,7 +777,8 @@ class Sell extends CI_Controller
             $row[] = date("j M Y h:i A", strtotime($value->sl_datetime));
             $row[] = $value->sl_discount;
             $row[] = $value->sl_total;
-
+            
+            if ($this->session->userdata('level')=='admin') {
             //add html for action
             $row[] = '
                     <div class="dropdown">
@@ -790,6 +795,10 @@ class Sell extends CI_Controller
                       </div>
                     </div> 
             ';
+            }else{
+              $row[] = 'x';
+            }
+
             $data[] = $row;
 
         }

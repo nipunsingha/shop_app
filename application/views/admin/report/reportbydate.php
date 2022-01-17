@@ -37,16 +37,23 @@
                     <th width="10%">code</th>
                     <th width="10%">Price</th>
                     <th width="10%">Quantity</th>
-                    <th width="10%">Subtotal</th>
+                    <th width="20%">Subtotal</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php
                     $totall=0; 
                     $subtotall=0; 
+                    $total_dis=0; 
                     $dis=0; 
                     foreach ($reportbydate as $key => $value) {
                     $totall +=  $value->sl_total;
+                    //$total_dis +=  (int)$value->sl_discount;
+
+                    if (is_numeric($value->sl_discount)) {
+                      $total_dis += $value->sl_discount;
+                    }
+
                     ?>
                     <tr>
                       <td><?php echo date("j M Y h:i A", strtotime($value->sl_datetime));?></td>
@@ -58,8 +65,12 @@
                     </tr>
                    <?php }?>
                    <tr>
+                    <th colspan="5">Totall Discount</th>
+                    <td><?php echo $total_dis;?></td>
+                   </tr>
+                   <tr>
                     <th colspan="5">Totall</th>
-                    <td><?php echo $totall;?></td>
+                    <td><?php echo $totall;?>(With discount)</td>
                    </tr>
                   </tbody>
                 </table>

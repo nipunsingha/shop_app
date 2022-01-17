@@ -11,12 +11,12 @@ class loginModel extends CI_Model {
        //$this->load->database();
     }
 
-    public function login_user($username, $hash){
+    public function login_user($username){
 		  $this->db->from('tbl_user');
 		  $this->db->where('username',$username);
-		  $this->db->where('password',$hash);
+		  //$this->db->where('password',$hash);
 		  $query = $this->db->get();
-
+		  //return $row = $query->row();
 		  return $query->result();
     }
 }

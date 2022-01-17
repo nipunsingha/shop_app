@@ -11,6 +11,8 @@ class Login extends CI_Controller
       $this->load->library('breadcrumb');
       $this->load->model('loginModel');
       $this->load->library('session');
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('form_validation');
    }
 
    public function index(){
@@ -19,37 +21,64 @@ class Login extends CI_Controller
 
 
 function login_user(){ 
-	  // $user_login=array(
-	  // 'username'=>$this->input->post('username'),
-	  // 'password'=>md5($this->input->post('password'))
-	  //  ); 
 
-	  $username=$this->input->post('username');
-	  $password= $this->input->post('password');
+ $this->form_validation->set_rules('username', 'Username', 'required');
+ $this->form_validation->set_rules('password', 'Password', 'required');
 
-	  $hash = password_hash($password, PASSWORD_DEFAULT);
-	    
-	   $data=$this->loginModel->login_user($username, $hash);
 
-      if($data)
+ if ($this->form_validation->run() == FALSE) {
+ $this->load->view("login/login");
+ } else {
+
+    $username=$this->input->post('username');
+    $password= $this->input->post('password');
+ 
+ $data=$this->loginModel->login_user($username);
+ 
+ if(!$data) {
+ $this->session->set_flashdata('login_error', '<div class="alert alert-warning"> Please check your email or password.
+</div>', 300);
+
+ redirect(uri_string());
+ }
+ 
+       if($data)
       {
-		  
-        $this->session->set_userdata('user_id',$data[0]['user_id']);
-        $this->session->set_userdata('name',$data[0]['name']);
-        $this->session->set_userdata('username',$data[0]['username']);
+        foreach ($data as $key => $value) {
+          $pass = $value->password;
+          $username = $value->username;
+          $name = $value->name;
+          $level = $value->level;
+        }
+  
+    if(password_verify($password,$pass)){
 
-		echo $this->session->set_userdata('user_id'); 
-        
-       redirect(base_url('Admin/index'));
+      $this->session->set_userdata('username', $value->username);
+      $this->session->set_userdata('name', $value->name);
+      $this->session->set_userdata('level', $value->level);
+          
+          redirect(base_url('Admin/index'));
+    }
+
+
 
      }
      else{
        $this->session->set_flashdata('error_msg', 'Error occured,Try again.');
-       $this->load->view("login/login");
+       redirect(base_url('Login'));
 
      }
 
+ }
+
 
 }
+
+	public function logout(){
+		//load session library
+		$this->load->library('session');
+		$this->session->unset_userdata('username');
+		redirect('Login');
+	}
 
 }   

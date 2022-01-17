@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2022 at 06:59 PM
+-- Generation Time: Jan 17, 2022 at 07:49 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -95,7 +95,7 @@ CREATE TABLE `tbl_product` (
 
 INSERT INTO `tbl_product` (`p_id`, `p_name`, `p_cat`, `p_code`, `p_price`, `p_date`, `p_img`, `p_des`, `p_sub_cat`) VALUES
 (11, 'saree', 41, '0100', '1500', '2022-01-14', NULL, '', '23'),
-(12, 'monipuri saree', 41, '1005', '1500', '2022-01-13', 'uploads/8d3197ca45.jpg', '', ''),
+(12, 'monipuri saree', 33, '1005', '1500', '2022-01-13', 'uploads/8d3197ca45.jpg', '', '0'),
 (13, 'komor tat shawl', 43, '05s', '850', '2022-01-13', 'uploads/67832e9413.jpg', 'buy price 500', 'komor tat shawl');
 
 -- --------------------------------------------------------
@@ -198,6 +198,29 @@ INSERT INTO `tbl_subcategory` (`sub_id`, `id`, `sub_name`) VALUES
 (26, 42, 'short gamcha'),
 (27, 43, 'komor tat shawl');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `u_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(350) NOT NULL,
+  `level` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`u_id`, `name`, `username`, `password`, `level`) VALUES
+(24, 'test', 'test', '$2y$10$NPmlRwEkLFxYSYsNbc5KnOBvcNqgC20Pq6XuTX4PTjWFQAc0ewiCW', 'editor'),
+(26, 'maria posoda', 'maria', '$2y$10$mUxEd0aGr6baYFlZTSQbGuJF3xgU4Ebn/NBb7QAI1B/S7DD3eUXVu', 'editor'),
+(27, 'admin', 'admin', '$2y$10$Ok2RX7rV9U/35Om3OQjBOOXOELM5PHK3jJ9Ppg5Ogkm2Y798FNhee', 'admin');
+
 --
 -- Indexes for dumped tables
 --
@@ -240,6 +263,12 @@ ALTER TABLE `tbl_subcategory`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`u_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -278,6 +307,12 @@ ALTER TABLE `tbl_sold`
 --
 ALTER TABLE `tbl_subcategory`
   MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
