@@ -146,12 +146,6 @@
                   <p>Daily Reports</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url()?>Report/weeklyReport" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Weekly Reports</p>
-                </a>
-              </li>
             </ul>
           </li>
 
