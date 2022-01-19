@@ -70,7 +70,7 @@
                    </tr>
                    <tr>
                     <th colspan="5">Totall</th>
-                    <td><?php echo $totall;?>(With discount)</td>
+                    <td><?php echo $totall;?><?php if($total_dis!=''){?>(With discount)<?php }?></td>
                    </tr>
                   </tbody>
                 </table>

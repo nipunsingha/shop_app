@@ -33,10 +33,11 @@
                   <thead>
                   <tr>
                     <th width="10%">Image</th>
-                    <th width="25%">Name</th>
+                    <th width="20%">Name</th>
                     <th width="10%">Category</th>
                     <th width="10%">Code</th>
                     <th width="10%">Price</th>
+                    <th width="10%">Quantity</th>
                     <th width="30%">Action</th>
                   </tr>
                   </thead>

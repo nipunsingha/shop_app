@@ -151,6 +151,24 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-mars-stroke"></i>
+              <p>
+               Stokes
+               <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url()?>Stokes/stokes" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Stokes</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>
                User

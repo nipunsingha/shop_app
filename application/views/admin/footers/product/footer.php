@@ -52,6 +52,10 @@
                                     <td id="p_price"></td>
                                   </tr>
                                   <tr>
+                                    <th>Quantity</th>
+                                    <td id="p_qty"></td>
+                                  </tr>
+                                  <tr>
                                     <th>Entry Date</th>
                                     <td id="p_date"></td>
                                   <tr>
@@ -137,6 +141,7 @@ function delete_confirm(){
              $("#p_code").html(data.p_code);
              $("#p_sub").html(data.p_sub_cat);
              $("#p_price").html(data.p_price);
+             $("#p_qty").html(data.p_qty);
              $("#p_date").html(data.p_date);
              $("#p_des").html(data.p_des);
 
@@ -202,6 +207,11 @@ $("form#add_product").validate({
 
         },
 
+        p_qty: {
+            required: true,
+
+        },
+
         p_date: {
             required: true,
 
@@ -226,6 +236,84 @@ $("form#add_product").validate({
         p_code: {
             required: "This field is required",
             remote:   "This code is already in use. Please try another one"
+        },
+
+        p_price: {
+            required: "This field is required",
+        },
+
+        p_qty: {
+            required: "This field is required",
+        },
+
+        p_date: {
+            required: "This field is required",
+        },
+
+        p_img: {
+                extension: "Only JPG and PNG files are allowed."
+        }
+                                   
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }    
+});
+
+
+//Create User form validation
+$("form#edit_product").validate({
+    rules: {
+        p_name: {
+            required: true,
+
+        },
+
+        p_cat: {
+            required: true,
+
+        },
+
+        p_code: {
+            required: true, 
+        },
+
+        p_price: {
+            required: true,
+
+        },
+
+        p_date: {
+            required: true,
+
+        },
+
+        p_img:{
+            required: false,
+            extension: "jpg|jpeg|png",  
+        }
+                             
+    },
+    messages: {
+        p_name: {
+            required: "This field is required",
+
+        },
+
+        p_cat: {
+            required: "This field is required",
+        },
+
+        p_code: {
+            required: "This field is required",
         },
 
         p_price: {

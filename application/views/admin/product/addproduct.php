@@ -66,14 +66,23 @@
                   </div>
 
                   <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label for="exampleInputPassword1">Price</label>
                           <input type="text" class="form-control" name="p_price" id="p_price" placeholder="Price">
                           <?php echo form_error('p_price', '<div class="text-primary">', '</div>'); ?>
                         </div>
                       </div>
-                      <div class="col-md-6">
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Quantity</label>
+                          <input type="text" class="form-control" name="p_qty" id="p_qty" placeholder="Quantity">
+                          <?php echo form_error('p_qty', '<div class="text-primary">', '</div>'); ?>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
                         <div class="form-group">
                             <label>Date</label>
 

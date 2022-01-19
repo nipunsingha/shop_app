@@ -311,8 +311,11 @@ class Cart extends CI_Controller
               $status = trim($this->input->post('status'));
               $cart_comment = trim($this->input->post('cart_comment'));
               $p_id = $this->input->post('p_id');
+
+              $dt = new DateTime('now', new DateTimezone('Asia/Dhaka'));
+              $date =  $dt->format("Y-m-d");
               
-              $date = date("Y-m-d");
+
 
 
         $data = array();

@@ -59,6 +59,7 @@ class Product extends CI_Controller
   	  $this->form_validation->set_rules('p_cat', 'category', 'trim|required');
   	  $this->form_validation->set_rules('p_code', 'code', 'trim|required|is_unique[tbl_product.p_code]',array('is_unique' => 'This %s already exists.'));
   	  $this->form_validation->set_rules('p_price', 'price', 'trim|required');
+      $this->form_validation->set_rules('p_qty', 'Quantity', 'trim|required');
   	  $this->form_validation->set_rules('p_date', 'date', 'trim|required');
 
     if(!empty($_FILES['p_img']['name']))
@@ -67,6 +68,7 @@ class Product extends CI_Controller
         $config['allowed_types']        = 'gif|jpg|png';
         $new_name = substr(md5(time()), 0, 10);
         $config['file_name'] = $new_name;
+        $config['max_size'] = 3000;
 
         $this->load->library('upload', $config);
 
@@ -86,6 +88,7 @@ class Product extends CI_Controller
                 'p_code' => trim($this->input->post('p_code')),
                 'p_price' => trim($this->input->post('p_price')),
                 'p_date' => $this->input->post('p_date'),
+                'p_qty' => $this->input->post('p_qty'),
                 'p_img' => trim($img_path),
                 'p_des' => trim($this->input->post('p_des')),
             );
@@ -134,6 +137,7 @@ class Product extends CI_Controller
                 'p_code' => trim($this->input->post('p_code')),
                 'p_price' => trim($this->input->post('p_price')),
                 'p_date' => $this->input->post('p_date'),
+                'p_qty' => $this->input->post('p_qty'),
                 'p_des' => trim($this->input->post('p_des')),
             );
          $insert = $this->productModel->save($data);
@@ -234,6 +238,7 @@ class Product extends CI_Controller
             $row[] = $ko->cat_name;
             $row[] = $ko->p_code;
             $row[] = $ko->p_price;
+            $row[] = $ko->p_qty;
             //add html for action
             $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" id="view" onclick="productview('."'".$ko->p_id."'".')"><i class="glyphicon glyphicon-pencil"></i>View</a>
 
@@ -267,6 +272,7 @@ class Product extends CI_Controller
     }
     
     $data['p_price'] =  "<div>".$results->p_price." ৳</div>";
+    $data['p_qty'] =  $results->p_qty;
     $data['p_des'] = $results->p_des;
     $data['p_date'] = $results->p_date;
     
@@ -327,6 +333,7 @@ class Product extends CI_Controller
       $this->form_validation->set_rules('p_cat', 'category', 'trim|required');
       $this->form_validation->set_rules('p_code', 'code', 'trim|required');
       $this->form_validation->set_rules('p_price', 'price', 'trim|required');
+      $this->form_validation->set_rules('p_qty', 'Quantity', 'trim|required');
       $this->form_validation->set_rules('p_date', 'date', 'trim|required');
 
       $data['item']= $this->productModel->viewproductbyid($id);
@@ -337,6 +344,7 @@ class Product extends CI_Controller
         $config['allowed_types']        = 'gif|jpg|png';
         $new_name = substr(md5(time()), 0, 10);
         $config['file_name'] = $new_name;
+        $config['max_size'] = 3000;
 
         $img =$this->productModel->getImgById($id); 
         $old_img = $img->p_img;
@@ -357,6 +365,7 @@ class Product extends CI_Controller
                 'p_cat' => trim($this->input->post('p_cat')),
                 'p_code' => trim($this->input->post('p_code')),
                 'p_price' => trim($this->input->post('p_price')),
+                'p_qty' => trim($this->input->post('p_qty')),
                 'p_date' => $this->input->post('p_date'),
                 'p_img' => trim($img_path),
                 'p_des' => trim($this->input->post('p_des')),
@@ -381,7 +390,7 @@ class Product extends CI_Controller
          $breadcrumb_items = [
            'Home' => '/',
            'Product List' => 'product/productlist',
-           $data['item']->p_img => 'product/productlist/'.$data['item']->id
+           $data['item']->p_img => 'product/productlist/'.$data['item']->p_img
         ];
         $template = [
            'tag_open' => '<ol class="breadcrumb float-sm-right">',
@@ -413,6 +422,7 @@ class Product extends CI_Controller
                 'p_cat' => trim($this->input->post('p_cat')),
                 'p_code' => trim($this->input->post('p_code')),
                 'p_price' => trim($this->input->post('p_price')),
+                'p_qty' => trim($this->input->post('p_qty')),
                 'p_date' => $this->input->post('p_date'),
                 'p_des' => trim($this->input->post('p_des')),
                 'p_sub_cat' => trim($this->input->post('p_sub_cat')),
@@ -429,7 +439,7 @@ class Product extends CI_Controller
          $breadcrumb_items = [
            'Home' => '/',
            'Product List' => 'product/productlist',
-           $data['item']->p_img => 'product/productlist/'.$data['item']->id
+           $data['item']->p_img => 'product/productlist/'.$data['item']->p_img
         ];
         $template = [
            'tag_open' => '<ol class="breadcrumb float-sm-right">',
