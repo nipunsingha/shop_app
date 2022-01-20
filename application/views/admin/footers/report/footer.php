@@ -67,7 +67,13 @@
       ],
     });
 
-  table = $('#sellreport').DataTable({
+   $('#sellreport').DataTable({
+    });
+
+   $('#reportDrange').DataTable({
+    });
+
+   $('#datereport').DataTable({
     });
 </script>
 

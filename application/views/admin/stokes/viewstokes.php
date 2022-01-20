@@ -26,10 +26,10 @@
                   <tr>
                     <th>Name</th>
                     <th>Cat.</th>
-                    <th>Sub cat</th>
+                    <th>Sub cat.</th>
                     <th>Code</th>
-                    <th>Total qty</th>
-                    <th>Sell qty</th>
+                    <th>Total qty.</th>
+                    <th>Sell qty.</th>
                     <th>Remain qty.</th>
                   </tr>
                   </thead>

@@ -34,6 +34,14 @@
                   <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 col-lg-12">
+                          <div class="date" style="margin-bottom: 20px;">
+                            <?php
+                              foreach ($sellitems as $key => $value) {
+                                $date = $value->sl_datetime;
+                              }
+                            ?>
+                           <h5>Date: <?php echo date("j M Y h:i A", strtotime($date));?></h5>
+                          </div>
                            <div class="card">
                             <div class="card-body">
                               <div class="row">

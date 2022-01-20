@@ -32,6 +32,7 @@
                   <thead>
                   <tr>
                     <th width="5%">Date</th>
+                    <th width="10%">Payment</th>
                     <th width="10%">Discount</th>
                     <th width="10%">Total</th>
                     <th width="10%">Action</th>

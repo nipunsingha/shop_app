@@ -775,6 +775,7 @@ class Sell extends CI_Controller
             $no++;
             $row = array();
             $row[] = date("j M Y h:i A", strtotime($value->sl_datetime));
+            $row[] = $value->status;
             $row[] = $value->sl_discount;
             $row[] = $value->sl_total;
             

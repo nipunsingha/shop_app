@@ -22,7 +22,7 @@
           <div class="col-md-12">
             <div class="card card-primary card-outline">
                 <div class="card-body">
-                    <form action="<?php echo base_url();?>/Report/reportByDateRangeWithValue" method="GET">
+                    <form action="<?php echo base_url();?>Report/reportByDateRangeWithValue" method="GET">
                       <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">

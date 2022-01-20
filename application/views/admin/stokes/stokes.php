@@ -27,6 +27,7 @@
                     <th>Name</th>
                     <th>Category</th>
                     <th>Sub cateogry</th>
+                    <th>Code</th>
                     <th>Quantity</th>
                     <th>View</th>
                   </tr>
@@ -39,8 +40,9 @@
                       <td><?php echo $value->p_name;?></td>
                       <td><?php echo $value->cat_name;?></td>
                       <td><?php echo $value->sub_name;?></td>
+                      <td><?php echo $value->p_code;?></td>
                       <td><?php echo $value->p_qty;?></td>
-                      <td><a href="<?php echo base_url('Stokes/viewStokes/'.$value->sl_code)?>" class="btn btn-success">View</a></td>
+                      <td><a href="<?php echo base_url('Stokes/viewStokes/'.$value->sl_code)?>" class="btn btn-success">View Stokes</a></td>
                     </tr>
                     <?php }?>
                   </tbody>
