@@ -130,7 +130,7 @@
               </li>
             </ul>
           </li>
-
+          <?php if($this->session->userdata('level')=='admin'){?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-bar"></i>
@@ -146,9 +146,15 @@
                   <p>Daily Reports</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url()?>Report/reportByDateRange" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reports by date range</p>
+                </a>
+              </li>
             </ul>
           </li>
-
+          <?php }?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-mars-stroke"></i>

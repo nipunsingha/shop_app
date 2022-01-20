@@ -25,16 +25,18 @@
                   <thead  style="text-align: center;">
                   <tr>
                     <th>Name</th>
-                    <th>Category</th>
-                    <th>Sub cateogry</th>
+                    <th>Cat.</th>
+                    <th>Sub cat</th>
                     <th>Code</th>
-                    <th>Total Quantity</th>
-                    <th>Sell Quan.</th>
+                    <th>Total qty</th>
+                    <th>Sell qty</th>
+                    <th>Remain qty.</th>
                   </tr>
                   </thead>
                   <tbody style="text-align: center;">
                     <?php 
                       $total=0; 
+                      $remain=0; 
                        foreach ($viewStokes as $key => $value) {
                     if (is_numeric($value->sl_qty)) {
                       $total += $value->sl_qty;
@@ -44,7 +46,9 @@
                       $cat_name = $value->cat_name;
                       $sub_name = $value->sub_name;
                       $p_qty = $value->p_qty;
+                      $remain = $p_qty-$total;
                     }
+
                     ?>
                     <?php }?>
                     <tr>
@@ -54,6 +58,7 @@
                       <td><?php echo $p_code;?></td>
                       <td><?php echo $p_qty;?></td>
                       <td><?php echo $total;?></td>
+                      <td><?php echo $remain;?></td>
                     </tr>  
                     
                   </tbody>

@@ -104,7 +104,54 @@ class Report extends CI_Controller
       $this->load->view("admin/footers/report/footer");
     }
 
-    public function weeklyReport(){
+    public function reportByDateRange(){
+       $breadcrumb_items = [
+         'Home' => '/',
+         'Report by date range' => 'report/report'
+      ];
 
+      $template = [
+         'tag_open' => '<ol class="breadcrumb float-sm-right">',
+         'crumb_open' => '<li class="breadcrumb-item">',
+         'crumb_active' => '<li class="breadcrumb-item active">'
+      ];
+
+      $this->breadcrumb->set_template($template);
+      $this->breadcrumb->add_item($breadcrumb_items);
+      $data['breadcrumb_bootstrap_style'] = $this->breadcrumb->generate();
+
+      $data['headertitle'] = 'Report by date range| SMWA';
+
+      $this->load->view("admin/headers/header/header",$data);
+      $this->load->view("admin/sidebar");
+      $this->load->view("admin/report/reportbydaterange",$data);
+      $this->load->view("admin/footers/report/footer");
+    }
+
+    public function reportByDateRangeWithValue(){
+       $f_date = $_GET['f_date'];
+       $e_date = $_GET['e_date'];
+       $breadcrumb_items = [
+         'Home' => '/',
+         'Report by date range' => 'report/report'
+      ];
+
+      $template = [
+         'tag_open' => '<ol class="breadcrumb float-sm-right">',
+         'crumb_open' => '<li class="breadcrumb-item">',
+         'crumb_active' => '<li class="breadcrumb-item active">'
+      ];
+
+      $this->breadcrumb->set_template($template);
+      $this->breadcrumb->add_item($breadcrumb_items);
+      $data['breadcrumb_bootstrap_style'] = $this->breadcrumb->generate();
+      $data['reportByDateRangeWithValue'] = $this->reportModel->reportByDateRangeWithValue($f_date,$e_date);
+
+      $data['headertitle'] = 'Report by date range| SMWA';
+
+      $this->load->view("admin/headers/header/header",$data);
+      $this->load->view("admin/sidebar");
+      $this->load->view("admin/report/reportbydaterangewithvalue",$data);
+      $this->load->view("admin/footers/report/footer");
     }
 } 

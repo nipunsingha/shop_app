@@ -25,6 +25,8 @@
 <!-- jQuery -->
 <script src="<?php echo base_url()?>webroot/plugins/jquery/jquery.min.js"></script>
 
+<script src = "<?php echo base_url()?>webroot/plugins/jquery-ui/jquery-ui.js"></script>
+
 <!-- DataTables -->
 <script src="<?php echo base_url()?>webroot/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>webroot/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -39,6 +41,14 @@
 <script src="<?php echo base_url()?>webroot/dist/js/active.js"></script>
 
 <script>
+     $(document).ready(function(){
+       var date = $('#f_date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+    });
+
+     $(document).ready(function(){
+       var date = $('#e_date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+    });
+
 
   table = $('#list').DataTable({
       "processing": true,

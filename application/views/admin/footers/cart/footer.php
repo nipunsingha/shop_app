@@ -26,7 +26,7 @@
 
 
 <script src="<?php echo base_url()?>webroot/plugins/jquery/jquery.min.js"></script>
-  <script src = "<?php echo base_url()?>webroot/plugins/jquery-ui/jquery-ui.js"></script>
+<script src = "<?php echo base_url()?>webroot/plugins/jquery-ui/jquery-ui.js"></script>
 <!-- Toastr -->
 <script src="<?php echo base_url()?>webroot/plugins/toastr/toastr.min.js"></script>
 
