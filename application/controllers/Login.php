@@ -30,10 +30,10 @@ function login_user(){
  $this->load->view("login/login");
  } else {
 
-    $username=$this->input->post('username');
-    $password= $this->input->post('password');
+    $username= trim($this->input->post('username'));
+    $password= trim($this->input->post('password'));
  
- $data=$this->loginModel->login_user($username);
+    $data=$this->loginModel->login_user($username);
  
  if(!$data) {
  $this->session->set_flashdata('login_error', '<div class="alert alert-warning"> Please check your email or password.
@@ -51,16 +51,20 @@ function login_user(){
           $level = $value->level;
         }
   
-    if(password_verify($password,$pass)){
-
-      $this->session->set_userdata('username', $value->username);
-      $this->session->set_userdata('name', $value->name);
-      $this->session->set_userdata('level', $value->level);
-          
-          redirect(base_url('Admin/index'));
-    }
+         if(!password_verify($password,$pass)) {
+         $this->session->set_flashdata('login_error', '<div class="alert alert-warning"> Please check your email or password.</div>', 300);
+         redirect(uri_string());
+         }
 
 
+
+    // if(password_verify($password,$pass)){
+
+        $this->session->set_userdata('username', $value->username);
+        $this->session->set_userdata('name', $value->name);
+        $this->session->set_userdata('level', $value->level);
+        redirect(base_url('Admin/index'));
+    // }
 
      }
      else{
