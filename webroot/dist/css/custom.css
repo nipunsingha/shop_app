@@ -76,6 +76,7 @@ table.tblone img {
 }
 .borderless td, .borderless th {
     border: none;
+    text-align: center;
 }
 
 #addSoldItem input{
@@ -98,4 +99,5 @@ input.discountinput {
   padding: 5px;
   background: #eee;
   cursor: pointer;
+  margin-top: -16px;
 }

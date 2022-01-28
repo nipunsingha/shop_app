@@ -48,6 +48,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
         margin-top: 3px;
         font-weight: normal!important;
     }
+
+
+  .cart-table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 11px;
+      background: #f5f9fa;
+    }
+
+   .cart-table th {
+    border-top: 1px solid #7c5cc4; 
+    border-bottom: 1px solid #7c5cc4; 
+   }
+
+   .cart-table td, th {
+      border-top: 1px solid #ddd;
+      text-align: left;
+      padding: 8px;
+      text-align: center;
+    }
+
+  .cart-table  tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+  .cartst {
+    font-size: 12px;
+  }
+
   </style>
 </head>
 <body class="hold-transition sidebar-mini">

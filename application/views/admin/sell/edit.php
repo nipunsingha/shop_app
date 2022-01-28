@@ -34,71 +34,68 @@
                   <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 col-lg-12">
-                          <div class="date" style="margin-bottom: 20px;">
-                            <?php
-                              foreach ($sellitems as $key => $value) {
-                                $date = $value->sl_datetime;
-                              }
-                            ?>
-                           <h5>Date: <?php echo date("j M Y h:i A", strtotime($date));?></h5>
-                          </div>
-                           <div class="card">
-                            <div class="card-body">
-                              <div class="row">
-                                <div class="col-md-12 col-lg-12">
-                                   <form id="search" autocomplete="off">
-                                    <label>Select Product By Code</label>
-                                    <input type="hidden" name="sl_token" id="sl_token" value="<?php echo $token;?>">
-                                     <div class="input-group">
-                                        <input class="form-control py-2 border-right-0 border" type="text" id="sl_code" name="sl_code">
-                                        <span class="input-group-append">
-                                            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
-                                        </span>
-                                     </div>
-                                     <div class="alert alert-info" style="display:none;"></div>
-                                   </form>
-                                   <div id="result" style="display: none;position: relative;"></div>
-                                </div>
+                            <div class="row cartst" style="margin-bottom: 25px;">
+                              <div class="col-md-12 col-lg-12">
+                                 <form id="search" autocomplete="off">
+                                  <label>Select Product By Code</label>
+                                   <div class="input-group">
+                                      <input class="form-control py-2 border-right-0 border cartst" type="text" id="sl_code" name="sl_code" placeholder="Product code..">
+                                      <span class="input-group-append">
+                                          <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+                                      </span>
+                                   </div>
+                                   <div class="alert alert-info" style="display:none;"></div>
+                                 </form>
+                                 <div id="result" style="display: none;position: relative;"></div>
                               </div>
                             </div>
-                           </div>
-                        </div>
-                      </div><!-- /.row -->
-                      <div class="card card-primary">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-12 col-lg-12">
-                              <form id="customerForm">
-                                <label>Add Customer</label>              
-                                <div class="input-group">
+   
+
+                            <form id="addSoldItem">
+                              <div class="row " style="margin-bottom: 25px;">
+                                <div class="col-md-4 cartst">
+              
+                                <div class="form-group">
+                                    <label>Customer</label><br>
+
+                                    <input class="form-control border cartst" type="text" value="<?php echo $customerName;?>" id="searchkey" tokenId="<?php echo $token;?>">
+
                                     <input type="hidden" id="c_id" name="c_id" value="<?php echo $customerId;?>">
-
-                                    <input class="form-control py-2 rounded-left border" type="text" value="<?php echo $customerName;?>" id="searchkey" tokenId="<?php echo $token;?>">
-
-                                    <span class="input-group-append">
-                                        <div class="input-group-text bg-transparent"><i class="fas fa-user"></i></div>
-                                    </span>
                                 </div>
                                 <div id="searchResult" style="display: none"></div>
-                              </form> 
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-12 col-sm-12 hero-feature">
-                          <div id="data_table" class="table-responsive">
-                            <form id="addSoldItem">
-                              <table class="tblone">
+                                </div>
+                                <div class="col-md-4 cartst">
+                                    <div class="form-group">
+                                       <label>Payment Status</label><br>
+                                       <select id="pay_st" class="form-control cartst" name="status" tokenId="<?php echo $sl_token;?>">
+                                        
+                                        <option <?php if ($status == 'paid') echo 'selected'; ?> value="paid">Paid</option>
+
+                                        <option <?php if ($status == 'due') echo 'selected'; ?> value="due">Due</option>      
+                                       </select>
+                                       <div class="text-danger" style="display: none;font-size: 80%;color: #dc3545;">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 cartst">
+                                  <div class="form-group ">
+                                    <label>Note</label><br>
+                                    <textarea class="form-control cartst" name="comment" rows="2" id="comment" tokenId="<?php echo $sl_token;?>"><?php echo $comment;?></textarea>           
+                                  </div> 
+                                </div>
+                              </div>
+                             <b class="cartst">Order Table *</b>
+                              <div id="data_html" class="table-responsive">
+                              <table class="table-hover cart-table">
                                 <tbody>
-                                  <tr>
-                                  <th width="5%">Sl</th>
-                                  <th width="25%">Name</th>
-                                  <th width="20%">Category</th>
-                                  <th width="15%">Code</th>
-                                  <th width="15%">Quantity</th>
-                                  <th width="15%">Price(৳)</th>
-                                  <th width="10%">Action</th>
+                                <tr>
+                                  <th width="5%;">Sl</th>
+                                  <th width="15%;">Name</th>
+                                  <th width="10%;">Category</th>
+                                  <th width="15%;">Code</th>
+                                  <th width="10%;">qty</th>
+                                  <th width="10%;">Price(৳)</th>
+                                  <th width="20%;">Action</th>
                                 </tr>
                               
                               <?php
@@ -124,7 +121,7 @@
                               <td><?php echo $value->cat_name;?></td>
                               <td><?php echo $value->sl_code;?></td>
                               <td>
-                                <input type="number" id="sl_qty" name="sl_qty" value="<?php echo $value->sl_qty;?>"
+                                <input type="number" id="sl_qty" name="sl_qty" value="<?php echo $value->sl_qty;?>" style="border: 1px solid #b9bfc1;text-align: center;"
 
                                  p_id="<?php echo $value->p_id;?>"
 
@@ -137,74 +134,64 @@
 
                               </td>
                               <td><?php echo $value->sl_price;?></td>
-                              <td><a style="cursor:pointer" onclick="deleteItem(<?php echo $value->sl_id;?>)">X</a></td>
+                              <td><a style="cursor:pointer;color:white;" onclick="deleteItem(<?php echo $value->sl_id;?>)" class="btn bg-gradient-danger btn-xs">Delete</a></td>
                               </tr>
-                               <?php }?>
-                               <?php }?>
-                              
-                            </tbody>
-                           </table>
-                              <div class="ctbale" style="float:right;text-align:left;background-color:#eee;padding: 5px; width:50%;">
-                                 <table height="120px">
-                                    <tbody>
-                                      <tr>
-                                        <th>Sub Total</th>
-                                        <td style="text-align:right"><b id="totalprice"><?php
+                              <?php }?>
+                              <?php }?>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Sub Total</b></td>
+                                <td><b id="totalprice"><?php
+                                 echo $total_price;
+                                 ?></b> ৳</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Discount</b></td>
+                                <td><input class="discountinput" type="text" id="sl_discount" tokenId="<?php echo $sl_token;?>"  totalId="<?php echo $sl_total;?>" 
+                                subtotal="<?php echo $total_price;?>"
+                                  name="sl_discount" value="<?php echo $sl_discount;?>" style="border-radius: 5px;border: 1px solid#33d7ff;padding: 3px; text-align:center!important;"></td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Grand Total</b></td>
+                                <td>
+                                <b id="grandprice"><?php if (!empty($sl_discount)) {
+                                  echo $price =  $total_price-$sl_discount;
+                                }else{
+                                  echo $total_price;
+                                }  
+                                 ?></b> ৳
 
-                                         echo $total_price;
+                                <input type="hidden" id="sl_total" name="sl_total" value="<?php echo $total_price;?>" readonly>
 
-                                         ?></b> ৳</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Discount</th>
-                                        <td><input class="discountinput" type="text" id="sl_discount" tokenId="<?php echo $sl_token;?>"  totalId="<?php echo $sl_total;?>" 
-                                        subtotal="<?php echo $total_price;?>"
-                                          name="sl_discount" value="<?php echo $sl_discount;?>"></td>
-                                      </tr>
-                                      <tr>
-                                        <th>Grand Total</th>
-                                        <td style="text-align:right">
-                                        <b id="grandprice"><?php if (!empty($sl_discount)) {
-                                          echo $price =  $total_price-$sl_discount;
-                                        }else{
-                                          echo $total_price;
-                                        }  
-                                         ?></b> ৳
-
-                                        <input type="hidden" id="sl_total" name="sl_total" value="<?php echo $total_price;?>" readonly>
-
-                                        <input type="hidden" id="sl_token" name="sl_token" value="<?php echo $sl_token;?>" readonly>
-                                        </td>
-                                      </tr>
-                                   </tbody>
-                                 </table>
-                               </div>
-                              </form>
-                            </div>
-
-
-                           <label>Payment Status</label><br>
-
-                           <select id="pay_st" class="form-control" name="status" style="width: 20%" tokenId="<?php echo $sl_token;?>">
+                                <input type="hidden" id="sl_token" name="sl_token" value="<?php echo $sl_token;?>" readonly>
+                                </td>
+                              </tr>
+                              </tbody>
+                              </table>
+                              </div>
                             
-                            <option <?php if ($status == 'paid') echo 'selected'; ?> value="paid">Paid</option>
-
-                            <option <?php if ($status == 'due') echo 'selected'; ?> value="due">Due</option>      
-                           </select>
-  
-                               
-                            <div>
-                              <label>Comment</label>
-                              <textarea class="form-control" name="comment" id="comment" tokenId="<?php echo $sl_token;?>"><?php echo $value->cart_comment;?></textarea>
-                            </div>
-                       </div>
-                    </div>
-               </div>
-            </div>
-          </div>
-        </div><!-- /.row -->
+                          </form>
+                        </div>
+                    </div><!-- /.row -->
+                 </div>
+             </div>
+           </div>
+         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-      
     </div><!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

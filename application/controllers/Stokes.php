@@ -45,42 +45,37 @@ class Stokes extends CI_Controller
       $this->load->view("admin/footers/stokes/footer");
    }
 
-   public function stokes_list(){
+   public function viewStokesbyid(){
         $this->load->model('stokesModel');
-        $list = $this->stokesModel->get_datatables();
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $ko) {
-            $no++;
-            $row = array();
-            if(!empty($ko->p_img)){
-            $row[] = '
-                    <td><img src="'.base_url().$ko->p_img.'" class="img-responsive img-thumbnail"></td>
-                    ';
-                  }else{
-            $row[] = '
-                    <td><img src="'.base_url().'webroot/dist/img/no-pic.png" class="img-responsive img-thumbnail"></td>
-                    ';
-                  }
+        $sl_code = $this->input->get('sl_code');
+        $results = $this->stokesModel->viewStokes($sl_code);
+        $viewStokesDedatil = $this->stokesModel->viewStokesDedatil($sl_code);
 
-            $row[] = $ko->p_name;
-            $row[] = $ko->cat_name;
-            $row[] = $ko->p_code;
-            $row[] = $ko->p_price;
-            $row[] = $ko->p_qty;
-            //add html for actio
-        
-            $data[] = $row;
-        }
+        $total=0; 
+        $remain=0; 
+        foreach ($viewStokesDedatil as $key => $value) {
+        if (is_numeric($value->sl_qty)) {
+        $total += $value->sl_qty;
 
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->stokesModel->count_all(),
-            "recordsFiltered" => $this->stokesModel->count_filtered(),
-            "data" => $data,
-            );
-        //output to json format
-        echo json_encode($output);
+        $p_name = $value->p_name;
+        $p_code = $value->p_code;
+        $cat_name = $value->cat_name;
+        $sub_name = $value->sub_name;
+        $p_qty = $value->p_qty;
+        $remain = $p_qty-$total;
+      }
+      }
+    
+
+        $data['p_qty'] =  $results->p_qty;
+        $data['p_sell_qty'] =  $total;
+        $data ['p_r_qty']=  $remain;
+        echo json_encode($data);
+   
+ }
+
+   public function viewstokesmodal(){
+
    }
 
    public function viewStokes($sl_code){

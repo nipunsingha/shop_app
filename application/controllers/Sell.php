@@ -436,6 +436,15 @@ class Sell extends CI_Controller
       $data['breadcrumb_bootstrap_style'] = $this->breadcrumb->generate();
 
       $data['sellitems'] = $this->sellModel->editSellItem($token);
+
+      $sellitems = $this->sellModel->editSellItem($token);
+
+      foreach ($sellitems as $key => $value) {
+        $data['status'] = $value->status;
+        $data['comment'] = $value->cart_comment;
+        $data['sl_token'] = $value->sl_token;
+      }
+
       //$data['sellitems'] = $this->cart->contents();
 
       $customerData = $this->sellModel->sellDetail($token);
@@ -578,6 +587,8 @@ class Sell extends CI_Controller
           $sl_total = $value->sl_total;
           $cart_comment = $value->cart_comment;
           $status = $value->status;
+          $sl_datetime = $value->sl_datetime;
+          $sl_date = $value->sl_date;
         }
 
         $Qntcheck = $this->sellModel->updateQnty($token,$quantity,$p_id);
@@ -617,7 +628,9 @@ class Sell extends CI_Controller
             'sl_qty'=> $quantity,
             'p_id'=> $p_id,
             'cart_comment'=> $cart_comment,
-            'status'=> $status
+            'status'=> $status,
+            'sl_date'=> $sl_date,
+            'sl_datetime'=> $sl_datetime,
         );
 
         $insert = $this->sellModel->insertEditSell($data,$token);

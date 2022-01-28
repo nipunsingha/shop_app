@@ -22,7 +22,7 @@ class Cart extends CI_Controller
    public function cart(){
       $breadcrumb_items = [
          'Home' => '/',
-         'Add Cart' => 'Sell/sell'
+         'Add Sell' => 'Sell/sell'
       ];
 
       $template = [
@@ -163,23 +163,23 @@ class Cart extends CI_Controller
 
 	public function show_cart()
 	{
-		$items = $this->cart->contents();
+      $items = $this->cart->contents();
         
         $data_html = '';
         
         $i=0;
 
         $data_html .= '
-              <table class="table table-bordered table-striped">
+              <table class="table-hover cart-table">
                 <tbody>
-                  <tr>
-                  <th width="5%">Sl</th>
-                  <th width="25%">Name</th>
-                  <th width="20%">Category</th>
-                  <th width="15%">Code</th>
-                  <th width="15%">qty</th>
-                  <th width="15%">Price(৳)</th>
-                  <th width="10%">Action</th>
+                <tr>
+                  <th width="5%;">Sl</th>
+                  <th width="15%;">Name</th>
+                  <th width="10%;">Category</th>
+                  <th width="15%;">Code</th>
+                  <th width="10%;">qty</th>
+                  <th width="10%;">Price(৳)</th>
+                  <th width="20%;">Action</th>
                 </tr>
         ';
         foreach($items as $value) { 
@@ -190,60 +190,68 @@ class Cart extends CI_Controller
                   <td>'.$i.'
                   <input type="hidden" id="id_rows" name="id_rows[]" value="'.$i.'">
                   </td>
-		          <td><input type="text" name="sl_name[]" value="'.$value['name'].'" readonly>
-		          </td>
-		          <td><input type="text" id="c_name" name="c_name[]" value="'.$value['c_name'].'" readonly>
+                  <td><input type="text" name="sl_name[]" value="'.$value['name'].'" readonly>
+                  </td>
+                  <td><input type="text" id="c_name" name="c_name[]" value="'.$value['c_name'].'" readonly>
 
-              <input type="hidden" id="sl_cat " name="sl_cat[]" value="'.$value['s_cat'].'">
+                  <input type="hidden" id="sl_cat " name="sl_cat[]" value="'.$value['s_cat'].'">
 
-              <input type="hidden" id="sl_sub_cat" name="sl_sub_cat[]" value="'.$value['p_sub_cat'].'">
+                  <input type="hidden" id="sl_sub_cat" name="sl_sub_cat[]" value="'.$value['p_sub_cat'].'">
 
-		          </td>
-		          <td><input type="text" id="sl_code" name="sl_code[]" value="'.$value['code'].'" readonly>
-		          </td>
-		          <td><input type="number" id="qty'.$value['id'].'" name="qty[]" value="'.$value['qty'].'" id-data="'.$value['rowid'].'" style="border: 1px solid #ddd;">
+                  </td>
+                  <td><input type="text" id="sl_code" name="sl_code[]" value="'.$value['code'].'" readonly>
+                  </td>
+                  <td><input type="number" id="qty'.$value['id'].'" name="qty[]" value="'.$value['qty'].'" id-data="'.$value['rowid'].'" style="border: 1px solid #b9bfc1">
                  <input type="hidden" id="pro_id" name="p_id[]" value="'.$value['id'].'">
-		          </td>
-		          <td><input type="text" name="sl_subtotal" value="'.$value['subtotal'].'" readonly>
+                 </td>
+                 <td><input type="text" name="sl_subtotal" value="'.$value['subtotal'].'" readonly>
 
-              <input type="hidden" id="sl_price" name="sl_price[]" value="'.$value['price'].'">
-		          </td>
+                 <input type="hidden" id="sl_price" name="sl_price[]" value="'.$value['price'].'">
+                 </td>
 
-              <td><a style="cursor:pointer" class="remove_inventory" id="'.$value["rowid"].'">X</a></td>
+                 <td><a style="cursor:pointer;color:white;" class="remove_inventory btn bg-gradient-danger btn-xs" id="'.$value["rowid"].'">Delete</a></td>
               </tr>
              ';             
         }
 
+        $data_html .= '
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Sub Total</b></td>
+                <td><b id="totalprice">'.$this->cart->total().'</b> ৳
+                  <input type="hidden" name="sl_price_total" value="'.$this->cart->total().'">
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Discount</b></td>
+                <td><input type="text" class="discountinput"  placeholder="" id="sl_discount" name="sl_discount" style="border-radius: 5px;border: 1px solid#33d7ff;padding: 3px; text-align:center!important;"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Grand Total</b></td>
+                <td>
+                <b id="grandprice">'.$this->cart->total().'</b> ৳
+                 <input type="hidden" id="sl_total" name="sl_total" class="grandprice_hidden" value="'.$this->cart->total().'">
+                </td>
+              </tr>
+          ';
+
         $data_html .='
                     </tbody>
                    </table>
-        ';
-
-
-        $data_html .= '
-            <div class="ctbale" style="float:right;text-align:left;background-color:#eee;padding: 5px; width:50%;">
-	               <table height="120px">
-	                  <tbody>
-          						<tr>
-          							<th>Sub Total</th>
-          							<td style="text-align:right"><b id="totalprice">'.$this->cart->total().'</b> ৳
-                        <input type="hidden" name="sl_price_total" value="'.$this->cart->total().'">
-                        </td>
-          						</tr>
-          						<tr>
-          							<th>Discount</th>
-          							<td><input class="discountinput" type="text" id="sl_discount" name="sl_discount"></td>
-          						</tr>
-          						<tr>
-          							<th>Grand Total</th>
-          							<td style="text-align:right">
-          							<b id="grandprice">'.$this->cart->total().'</b> ৳
-                         <input type="hidden" id="sl_total" name="sl_total" class="grandprice_hidden" value="'.$this->cart->total().'">
-          							</td>
-                      </tr>
-	                 </tbody>
-	               </table>
-               </div>
         ';
 
         echo $data_html;  

@@ -50,6 +50,24 @@ class stokesModel extends CI_Model {
 
         $this->db->where('tbl_sold.sl_code', $sl_code);
 
+       $query = $this->db->get();
+       return $query->row();
+  }
+  public function viewStokesDedatil($sl_code){
+         $this->db->select('tbl_sold.*, tbl_product.p_name, tbl_product.p_code,tbl_product.p_price,tbl_product.p_qty,tbl_category.cat_name, tbl_subcategory.sub_name,tbl_customers.c_name,tbl_customers.c_phone,tbl_customers.c_address');
+
+        $this->db->from('tbl_sold');
+
+        $this->db->join('tbl_product', 'tbl_sold.p_id = tbl_product.p_id','left');
+
+        $this->db->join('tbl_category', 'tbl_product.p_cat=tbl_category.id','left');
+
+        $this->db->join('tbl_subcategory', 'tbl_product.p_sub_cat = tbl_subcategory.sub_id','left');
+
+        $this->db->join('tbl_customers', 'tbl_customers.c_id = tbl_sold.c_id', 'left');
+
+        $this->db->where('tbl_sold.sl_code', $sl_code);
+
         $query = $this->db->get();
         return $query->result();
   } 

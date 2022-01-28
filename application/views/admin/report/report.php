@@ -20,7 +20,6 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <?php echo $date;?>
             <?php if($this->session->flashdata('msg')){ ?>
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
